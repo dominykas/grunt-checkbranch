@@ -19,6 +19,8 @@ module.exports = function (grunt) {
 			return;
 		}
 
+		expectedBranch = expectedBranch || "master";
+
 		grunt.log.writeln("Expecting to be on '" + expectedBranch + "' branch.");
 
 		var branchOutput = shell.exec("git rev-parse --abbrev-ref HEAD", {silent: true});
@@ -27,7 +29,7 @@ module.exports = function (grunt) {
 		}
 
 		var branch = branchOutput.output.trim();
-		if (branch !== options.branch) {
+		if (branch !== expectedBranch) {
 			grunt.fail.fatal("Only '"+expectedBranch+"' branch is allowed, and you're in '" + branch + "' branch.");
 		}
 
