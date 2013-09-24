@@ -12,19 +12,14 @@ var shell = require("shelljs");
 
 module.exports = function (grunt) {
 
-	grunt.registerMultiTask('checkbranch', 'Check that we are on a correct Git branch before proceeding.', function () {
+	grunt.registerTask('checkbranch', 'Check that we are on a correct Git branch before proceeding.', function (expectedBranch) {
 
-		if (grunt.option('no-check-branch')) {
+		if (grunt.option('no-checkbranch')) {
 			grunt.log.writeln("Branch check overridden via command line.");
 			return;
 		}
 
-		// Merge task-specific and/or target-specific options with these defaults.
-		var options = this.options({
-			branch: 'master'
-		});
-
-		grunt.log.writeln("Expecting to be on '" + options.branch + "' branch.");
+		grunt.log.writeln("Expecting to be on '" + expectedBranch + "' branch.");
 
 		var branchOutput = shell.exec("git rev-parse --abbrev-ref HEAD", {silent: true});
 		if (branchOutput.code !== 0) {
@@ -33,7 +28,7 @@ module.exports = function (grunt) {
 
 		var branch = branchOutput.output.trim();
 		if (branch !== options.branch) {
-			grunt.fail.fatal("Only '"+options.branch+"' branch is allowed, and you're in '" + branch + "' branch.");
+			grunt.fail.fatal("Only '"+expectedBranch+"' branch is allowed, and you're in '" + branch + "' branch.");
 		}
 
 	});

@@ -20,28 +20,14 @@ grunt.loadNpmTasks('grunt-checkbranch');
 ## The "checkbranch" task
 
 ### Overview
-In your project's Gruntfile, add a section named `checkbranch` to the data object passed into `grunt.initConfig()`.
-
+Include the task as one of your multitasks, optionally passing the desired branch (default: `master`) after a colon. E.g`
 ```js
-grunt.initConfig({
-  checkbranch: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
-})
+grunt.registerTask("default", ["test", "checkbranch:develop", "deploy"]
 ```
 
-### Options
+In the example above, the `deploy` task will only be executed, if you project is currently on the `develop` branch - otherwise the run will result in a fatal error.
 
-#### options.branch
-Type: `String`
-Default value: `'master'`
-
-Which branch should we be on?
+You may override this behavior, if `--no-checkbranch` is passed via command line.
 
 ## Release History
 _(Nothing yet)_
