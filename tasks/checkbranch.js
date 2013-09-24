@@ -8,43 +8,34 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+var shell = require("shelljs");
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
+module.exports = function (grunt) {
 
-  grunt.registerMultiTask('checkbranch', 'Check that we are on a correct Git branch before proceeding.', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
-    });
+	grunt.registerMultiTask('checkbranch', 'Check that we are on a correct Git branch before proceeding.', function () {
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+		if (grunt.option('no-check-branch')) {
+			grunt.log.writeln("Branch check overridden via command line.");
+			return;
+		}
 
-      // Handle options.
-      src += options.punctuation;
+		// Merge task-specific and/or target-specific options with these defaults.
+		var options = this.options({
+			branch: 'master'
+		});
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+		grunt.log.writeln("Expecting to be on '" + options.branch + "' branch.");
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
-    });
-  });
+		var branchOutput = shell.exec("git rev-parse --abbrev-ref HEAD", {silent: true});
+		if (branchOutput.code !== 0) {
+			grunt.fail.fatal("Failed to detect the current branch");
+		}
+
+		var branch = branchOutput.output.trim();
+		if (branch !== options.branch) {
+			grunt.fail.fatal("Only '"+options.branch+"' branch is allowed, and you're in '" + branch + "' branch.");
+		}
+
+	});
 
 };

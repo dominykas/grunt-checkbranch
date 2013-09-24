@@ -5,7 +5,8 @@
   "homepage": "https://github.com/dymonaz/grunt-checkbranch",
   "author": {
     "name": "Dominykas Blyžė",
-    "email": "hello@dominykas.com"
+    "email": "hello@dominykas.com",
+    "url": "http://www.dominykas.com/"
   },
   "repository": {
     "type": "git",
@@ -38,5 +39,8 @@
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ],
+  "dependencies": {
+    "shelljs": "~0.2.6"
+  }
 }
