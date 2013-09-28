@@ -1,7 +1,7 @@
 {
   "name": "grunt-checkbranch",
   "description": "Check that we are on a correct Git branch before proceeding.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "homepage": "https://github.com/dymonaz/grunt-checkbranch",
   "author": {
     "name": "Dominykas Blyžė",
