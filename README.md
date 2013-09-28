@@ -20,7 +20,7 @@ grunt.loadNpmTasks('grunt-checkbranch');
 ## The "checkbranch" task
 
 ### Overview
-Include the task as one of your multitasks, optionally passing the desired branch (default: `master`) after a colon. E.g`
+Include the task as one of your multitasks, optionally passing the desired branch (default: `master`) after a colon, e.g.:
 ```js
 grunt.registerTask("default", ["test", "checkbranch:develop", "deploy"]
 ```
@@ -30,4 +30,9 @@ In the example above, the `deploy` task will only be executed, if you project is
 You may override this behavior, if `--no-checkbranch` is passed via command line.
 
 ## Release History
-_(Nothing yet)_
+
+### 0.2.2 (2013-09-29)
+* Added tests
+
+### 0.2.1 (2013-09-24)
+* Initial release (after a few removed, buggy ones)

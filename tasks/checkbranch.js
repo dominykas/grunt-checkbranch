@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 
 		var branch = branchOutput.output.trim();
 		if (branch !== expectedBranch) {
-			grunt.fail.fatal("Only '"+expectedBranch+"' branch is allowed, and you're in '" + branch + "' branch.");
+			grunt.fail.fatal("Only '"+expectedBranch+"' branch is allowed, and you're on '" + branch + "' branch.");
 		}
 
 	});

@@ -1,0 +1,72 @@
+var buster = require('buster');
+var expect = buster.referee.expect;
+var shell = require('shelljs');
+shell.config.silent = true;
+
+var GRUNT_SUCCESS = "Done, without errors.";
+var GRUNT_FATAL = "Fatal error:";
+
+var execGrunt = function (cmd) {
+	shell.pushd('tmp');
+	var output = shell.exec("grunt " + cmd);
+	shell.popd();
+	return output;
+};
+
+buster.testCase("grunt-checkbranch", {
+
+	"setUp": function () {
+		shell.mkdir("-p", "tmp");
+		shell.pushd('tmp');
+		shell.exec("git init");
+		shell.cp("../test/fixture-gruntfile.js", "Gruntfile.js");
+		shell.exec("git add -A");
+		shell.exec("git commit -m 'initial commit'");
+		shell.popd();
+	},
+
+	"tearDown": function () {
+		shell.rm("-rf", "tmp");
+	},
+
+	"should not proceed when branch is not develop": function () {
+		var output = execGrunt("checkbranch:develop");
+		expect(output.output).toMatch(GRUNT_FATAL);
+		expect(output.output).toMatch("you're on 'master' branch");
+		expect(output.code).not.toEqual(0);
+	},
+
+	"should proceed when branch is develop": function () {
+		shell.pushd('tmp');
+		shell.exec("git checkout -b develop");
+		shell.popd();
+
+		var output = execGrunt("checkbranch:develop");
+		expect(output.output).toMatch(GRUNT_SUCCESS);
+		expect(output.code).toEqual(0);
+	},
+
+	"should default to 'master'": function () {
+		var output = execGrunt("checkbranch");
+		expect(output.output).toMatch(GRUNT_SUCCESS);
+		expect(output.code).toEqual(0);
+	},
+
+	"should bypass via command line": function () {
+		var output = execGrunt("checkbranch:develop --no-checkbranch");
+		expect(output.output).toMatch(GRUNT_SUCCESS);
+		expect(output.output).toMatch("overridden");
+		expect(output.code).toEqual(0);
+	},
+
+	"should fail when git fails": function () {
+		shell.rm("-rf", "tmp/.git");
+		shell.exec("git init tmp"); // removed old git, initialized new, but no commit - therefore no HEAD
+
+		var output = execGrunt("checkbranch");
+		expect(output.output).toMatch(GRUNT_FATAL);
+		expect(output.output).toMatch("Failed to detect");
+		expect(output.code).not.toEqual(0);
+	}
+
+});
