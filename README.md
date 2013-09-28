@@ -27,12 +27,13 @@ grunt.registerTask("default", ["test", "checkbranch:develop", "deploy"]
 
 In the example above, the `deploy` task will only be executed, if you project is currently on the `develop` branch - otherwise the run will result in a fatal error.
 
-You may override this behavior, if `--no-checkbranch` is passed via command line.
+You may override this behavior, if `--no-checkbranch` is passed via command line. You can disable `--no-checkbranch` (i.e. force the check) by setting a second param for the task, e.g. `checkbranch:master:true`.
 
 ## Release History
 
 ### 0.2.2 (2013-09-29)
 * Added tests
+* Second bool param to force the check.
 
 ### 0.2.1 (2013-09-24)
 * Initial release (after a few removed, buggy ones)

@@ -12,9 +12,9 @@ var shell = require("shelljs");
 
 module.exports = function (grunt) {
 
-	grunt.registerTask('checkbranch', 'Check that we are on a correct Git branch before proceeding.', function (expectedBranch) {
+	grunt.registerTask('checkbranch', 'Check that we are on a correct Git branch before proceeding.', function (expectedBranch, force) {
 
-		if (grunt.option('no-checkbranch')) {
+		if (grunt.option('no-checkbranch') && !force) {
 			grunt.log.writeln("Branch check overridden via command line.");
 			return;
 		}
