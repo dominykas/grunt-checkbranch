@@ -28,11 +28,6 @@ module.exports = function (grunt) {
 			tests: ['tmp'],
 		},
 
-		// Configuration to be run (and then tested).
-		checkbranch: {
-			// @todo
-		},
-
 		// Unit tests.
 		buster: {
 			dist: {
