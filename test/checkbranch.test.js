@@ -46,6 +46,26 @@ buster.testCase("grunt-checkbranch", {
 		expect(output.code).toEqual(0, "Incorrect grunt output code");
 	},
 
+	"should proceed when directory differs from negated match": function () {
+		shell.pushd('tmp');
+		shell.exec("git checkout -b develop2");
+		shell.popd();
+
+		var output = execGrunt("checkbranch:!develop");
+		expect(output.output).toMatch(GRUNT_SUCCESS);
+		expect(output.code).toEqual(0, "Incorrect grunt output code");
+	},
+
+	"should not proceed when directory equals negated match": function () {
+		shell.pushd('tmp');
+		shell.exec("git checkout -b develop");
+		shell.popd();
+
+		var output = execGrunt("checkbranch:!develop");
+		expect(output.output).toMatch(GRUNT_FATAL);
+		expect(output.code).toEqual(1, "Incorrect grunt output code");
+	},
+
 	"should default to 'master'": function () {
 		var output = execGrunt("checkbranch");
 		expect(output.output).toMatch(GRUNT_SUCCESS);

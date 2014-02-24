@@ -20,8 +20,13 @@ module.exports = function (grunt) {
 		}
 
 		expectedBranch = expectedBranch || "master";
+		var negate = false;
+		if(expectedBranch[0] === "!") {
+			negate = true;
+			expectedBranch = expectedBranch.slice(1);
+		}
 
-		grunt.log.writeln("Expecting to be on '" + expectedBranch + "' branch.");
+		grunt.log.writeln("Expecting to " + (negate ? "not" : "") + " be on '" + expectedBranch + "' branch.");
 
 		var branchOutput = shell.exec("git rev-parse --abbrev-ref HEAD", {silent: true});
 		if (branchOutput.code !== 0) {
@@ -29,8 +34,11 @@ module.exports = function (grunt) {
 		}
 
 		var branch = branchOutput.output.trim();
-		if (branch !== expectedBranch) {
+		if (!negate && branch !== expectedBranch) {
 			grunt.fail.fatal("Only '"+expectedBranch+"' branch is allowed, and you're on '" + branch + "' branch.");
+		}
+		else if(negate && branch === expectedBranch) {
+			grunt.fail.fatal("Anything except '"+expectedBranch+"' branch is allowed, and you're on '" + branch + "' branch.");
 		}
 
 	});
