@@ -29,7 +29,12 @@ In the example above, the `deploy` task will only be executed, if your project i
 
 You may override this behavior by passing `--no-checkbranch` via command line. You can disable `--no-checkbranch` (i.e. force the check) by setting a second param for the task, e.g. `checkbranch:master:true`.
 
+You may also negate the test, i.e. exclude a specific branch by prepending an exclamation mark, e.g. `"checkbranch:!develop"`.
+
 ## Release History
+
+### 0.3.0 (2014-02-24)
+* Added support for negating a branch, i.e. "run everywhere except X" (thx @Pleochism)
 
 ### 0.2.2 (2013-09-29)
 * Added tests
