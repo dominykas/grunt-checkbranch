@@ -1,7 +1,7 @@
 {
   "name": "grunt-checkbranch",
   "description": "Check that we are on a correct Git branch before proceeding.",
-  "version": "0.3.0",
+  "version": "0.2.2",
   "homepage": "https://github.com/dymonaz/grunt-checkbranch",
   "author": {
     "name": "Dominykas Blyžė",
@@ -29,12 +29,12 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt": "~0.4.1",
-    "grunt-release": "~0.5.1",
+    "grunt-release": "~0.7.0",
     "buster": "~0.7.6",
-    "grunt-buster": "~0.2.2"
+    "grunt-buster": "~0.3.1"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
