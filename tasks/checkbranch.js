@@ -26,7 +26,7 @@ module.exports = function (grunt) {
 			expectedBranch = expectedBranch.slice(1);
 		}
 
-		grunt.log.writeln("Expecting to be on '" + expectedBranch + "' branch.");
+		grunt.log.writeln("Expecting to " + (negate ? "not" : "") + " be on '" + expectedBranch + "' branch.");
 
 		var branchOutput = shell.exec("git rev-parse --abbrev-ref HEAD", {silent: true});
 		if (branchOutput.code !== 0) {
