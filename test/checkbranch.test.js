@@ -1,7 +1,6 @@
 var buster = require('buster');
 var expect = buster.referee.expect;
 var shell = require('shelljs');
-shell.config.silent = true;
 
 var GRUNT_SUCCESS = "Done, without errors.";
 var GRUNT_FATAL = "Fatal error:";
