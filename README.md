@@ -33,6 +33,10 @@ You may also negate the test, i.e. exclude a specific branch by prepending an ex
 
 ## Release History
 
+### 0.3.1 (2014-05-26)
+* npm update
+* Travis
+
 ### 0.3.0 (2014-02-24)
 * Added support for negating a branch, i.e. "run everywhere except X" (thx @Pleochism)
 
