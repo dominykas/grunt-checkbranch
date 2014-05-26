@@ -3,4 +3,5 @@ node_js:
   - "0.8"
   - "0.10"
 before_install:
-  - npm install --upgrade npm -g
+  - npm install -g --upgrade npm
+  - npm install -g grunt-cli
