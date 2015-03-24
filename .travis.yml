@@ -1,9 +1,8 @@
 language: node_js
 node_js:
-  - "0.8"
   - "0.10"
+  - "0.12"
+  - "io.js"
 before_install:
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis CI"
-  - npm install -g --upgrade npm
-  - npm install -g grunt-cli
