@@ -5,10 +5,13 @@ var shell = require('shelljs');
 var GRUNT_SUCCESS = "Done, without errors.";
 var GRUNT_FATAL = "Fatal error:";
 
-var execGrunt = function (cmd) {
+var execGrunt = function (gruntCmd) {
 	shell.pushd('tmp');
-	var output = shell.exec("grunt " + cmd);
+	var execCmd = "grunt --verbose " + gruntCmd;
+	console.warn("Executing for tests: " + execCmd);
+	var output = shell.exec(execCmd);
 	shell.popd();
+	console.warn("Done executing for tests: " + execCmd);
 	return output;
 };
 
