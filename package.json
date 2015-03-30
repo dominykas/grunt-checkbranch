@@ -26,7 +26,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "pushd tmp-shelljs; node run.js; popd"
+    "test": "cd tmp-shelljs; node run.js; cd .."
   },
   "devDependencies": {
     "buster": "~0.7.6",
