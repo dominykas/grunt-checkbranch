@@ -1,37 +1,31 @@
-/*
- * grunt-checkbranch
- * https://github.com/dymonaz/grunt-checkbranch
- *
- * Copyright (c) 2013 Dominykas Blyžė
- * Licensed under the MIT license.
- */
-
 'use strict';
 
 module.exports = function (grunt) {
 
 	// Project configuration.
 	grunt.initConfig({
-		jshint: {
-			all: [
+		"jshint": {
+			"all": [
 				'Gruntfile.js',
 				'tasks/*.js',
 				'test/*.js'
 			],
-			options: {
-				jshintrc: '.jshintrc'
+			"options": {
+				"jshintrc": '.jshintrc'
 			}
 		},
 
 		// Before generating any new files, remove any previously-created files.
-		clean: {
-			tests: ['tmp']
+		"clean": {
+			"tests": ['tmp']
 		},
 
 		// Unit tests.
-		buster: {
-			dist: {
-				reporter: "specification"
+		"buster": {
+			"dist": {
+				"test": {
+					"reporter": "specification"
+				}
 			}
 		}
 
