@@ -28,7 +28,7 @@ module.exports = function (grunt) {
 
 		grunt.log.writeln("Expecting to " + (negate ? "not" : "") + " be on '" + expectedBranch + "' branch.");
 
-		var branchOutput = shell.exec("git rev-parse --abbrev-ref HEAD", { silent: !!grunt.option('verbose') });
+		var branchOutput = shell.exec("git rev-parse --abbrev-ref HEAD", { silent: !grunt.option('verbose') });
 		if (branchOutput.code !== 0) {
 			grunt.fail.fatal("Failed to detect the current branch");
 		}
