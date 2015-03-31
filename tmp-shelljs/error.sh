@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-echo "error"
-echo "error"
-echo "error"
+cd /tmp
+git init tmp
+cd tmp
+git rev-parse --abbrev-ref HEAD
 exit 1
