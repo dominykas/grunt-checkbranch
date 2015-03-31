@@ -35,6 +35,14 @@ You may also negate the test, i.e. exclude a specific branch by prepending an ex
 
 ## Release History
 
+### 0.3.3 (2015-03-31)
+* io.js and 0.12 support
+* local grunt-cli
+* fix for verbosity
+
+### 0.3.2 (2015-03-24)
+* bump deps
+
 ### 0.3.1 (2014-05-26)
 * npm update
 * Travis
