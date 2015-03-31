@@ -21,25 +21,29 @@ module.exports = function (grunt) {
 
 		expectedBranch = expectedBranch || "master";
 		var negate = false;
-		if(expectedBranch[0] === "!") {
+		if (expectedBranch[0] === "!") {
 			negate = true;
 			expectedBranch = expectedBranch.slice(1);
 		}
 
 		grunt.log.writeln("Expecting to " + (negate ? "not" : "") + " be on '" + expectedBranch + "' branch.");
 
-		var branchOutput = shell.exec("git rev-parse --abbrev-ref HEAD", { silent: !grunt.option('verbose') });
-		if (branchOutput.code !== 0) {
-			grunt.fail.fatal("Failed to detect the current branch");
-		}
+		var done = this.async();
+		shell.exec("git rev-parse --abbrev-ref HEAD", {silent: !grunt.option('verbose')}, function (e, branchOutput) {
+			if (e) {
+				grunt.fail.fatal("Failed to detect the current branch");
+			}
 
-		var branch = branchOutput.output.trim();
-		if (!negate && branch !== expectedBranch) {
-			grunt.fail.fatal("Only '"+expectedBranch+"' branch is allowed, and you're on '" + branch + "' branch.");
-		}
-		else if(negate && branch === expectedBranch) {
-			grunt.fail.fatal("Anything except '"+expectedBranch+"' branch is allowed, and you're on '" + branch + "' branch.");
-		}
+			var branch = branchOutput.trim();
+			if (!negate && branch !== expectedBranch) {
+				grunt.fail.fatal("Only '" + expectedBranch + "' branch is allowed, and you're on '" + branch + "' branch.");
+			}
+			else if (negate && branch === expectedBranch) {
+				grunt.fail.fatal("Anything except '" + expectedBranch + "' branch is allowed, and you're on '" + branch + "' branch.");
+			}
+
+			done();
+		});
 
 	});
 
