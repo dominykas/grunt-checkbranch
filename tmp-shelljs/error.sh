@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
->&2 echo "error"
->&2 echo "error"
->&2 echo "error"
+echo "error"
+echo "error"
+echo "error"
 exit 1
