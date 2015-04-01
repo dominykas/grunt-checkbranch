@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-cd /tmp
-git init tmp
-cd tmp
-git rev-parse --abbrev-ref HEAD
+echo "fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree."
+echo "Use '--' to separate paths from revisions, like this:"
+echo "'git <command> [<revision>...] -- [<file>...]'"
+echo "HEAD"
 exit 1
