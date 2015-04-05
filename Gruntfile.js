@@ -27,6 +27,15 @@ module.exports = function (grunt) {
 					"reporter": "specification"
 				}
 			}
+		},
+		"bump": {
+			"options": {
+				commitMessage: 'release %VERSION%',
+				commitFiles: [ "-a" ],
+				tagName: '%VERSION%',
+				tagMessage: 'version %VERSION%',
+				pushTo: 'origin'
+			}
 		}
 
 	});
@@ -37,7 +46,7 @@ module.exports = function (grunt) {
 	// These plugins provide necessary tasks.
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-release');
+	grunt.loadNpmTasks('grunt-bump');
 	grunt.loadNpmTasks('grunt-buster');
 
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
@@ -46,5 +55,13 @@ module.exports = function (grunt) {
 
 	// By default, lint and run all tests.
 	grunt.registerTask('default', ['jshint', 'test']);
+
+	grunt.registerTask("release", function () {
+		var bump = grunt.option("bump");
+		if (bump !== "patch" && bump !== "minor" && bump !== "major") {
+			grunt.fail.fatal("Please pass --bump");
+		}
+		grunt.task.run(["checkbranch:master", "checkpending", "default", "bump:" + bump]);
+	});
 
 };

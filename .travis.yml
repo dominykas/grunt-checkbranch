@@ -6,3 +6,12 @@ node_js:
 before_install:
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis CI"
+deploy:
+  - provider: npm
+    skip_cleanup: true
+    email: "hello@dominykas.com"
+    api_key:
+      secure: "KvYhmiSIVolGrTLmB+SV/5xPTkIS8G7KgMwZMTE8WyEymG3sH2ulY2N2U2clJi1x85XUDEdLwZeNOwOzHAkrzibCu9x9vtGpxk1e64cgqX+//KJAmgeA0AQC3PNgPr1ZVRwKQcvtpx18RjqpdzBrg4htI3/B42Hx6c/KwAt+ZTk="
+    on:
+      tags: true
+      node_js: "io.js"
