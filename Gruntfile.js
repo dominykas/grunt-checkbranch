@@ -44,6 +44,7 @@ module.exports = function (grunt) {
 	grunt.loadTasks('tasks');
 
 	// These plugins provide necessary tasks.
+	grunt.loadNpmTasks('grunt-checkpending');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-bump');
