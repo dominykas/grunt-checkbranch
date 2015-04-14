@@ -4,8 +4,6 @@ Checks that we are on a correct git branch before proceeding.
 
 [![Build Status](https://travis-ci.org/dominykas/grunt-checkbranch.svg?branch=master)](https://travis-ci.org/dominykas/grunt-checkbranch)
 
-## Getting Started
-
 ```shell
 npm install grunt-checkbranch --save-dev
 ```
@@ -14,12 +12,6 @@ And in your Gruntfile:
 
 ```js
 grunt.loadNpmTasks('grunt-checkbranch');
-```
-
-or
-
-```js
-require('load-grunt-tasks')(grunt);
 ```
 
 ## Usage
