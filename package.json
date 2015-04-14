@@ -1,26 +1,27 @@
 {
   "name": "grunt-checkbranch",
-  "description": "Check that we are on a correct Git branch before proceeding.",
+  "description": "Checks that we are on a correct git branch before proceeding.",
   "version": "0.3.5",
-  "homepage": "https://github.com/dymonaz/grunt-checkbranch",
+  "homepage": "https://github.com/dominykas/grunt-checkbranch",
   "author": {
     "name": "Dominykas Blyžė",
     "email": "hello@dominykas.com",
-    "url": "http://www.dominykas.com/"
+    "url": "https://www.dominykas.com/"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/dymonaz/grunt-checkbranch.git"
+    "url": "git://github.com/dominykas/grunt-checkbranch.git"
   },
   "bugs": {
-    "url": "https://github.com/dymonaz/grunt-checkbranch/issues"
+    "url": "https://github.com/dominykas/grunt-checkbranch/issues"
   },
-  "licenses": [
+  "contributors": [
     {
-      "type": "MIT",
-      "url": "https://github.com/dymonaz/grunt-checkbranch/blob/master/LICENSE-MIT"
+      "name": "Daniel Lowes",
+      "url": "https://github.com/Pleochism"
     }
   ],
+  "license": "MIT",
   "main": "Gruntfile.js",
   "engines": {
     "node": ">= 0.8.0"
@@ -29,23 +30,23 @@
     "test": "grunt --verbose"
   },
   "devDependencies": {
-    "buster": "~0.7.6",
-    "grunt": "~0.4.1",
-    "grunt-bump": "^0.3.0",
-    "grunt-buster": "~0.3.1",
-    "grunt-checkpending": "^0.1.7",
-    "grunt-cli": "^0.1.13",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-jshint": "~0.11.0"
+    "buster": "0.7.x",
+    "grunt": "0.4.x",
+    "grunt-bump": "0.3.x",
+    "grunt-buster": "0.3.x",
+    "grunt-checkpending": "0.1.x",
+    "grunt-cli": "0.1.x",
+    "grunt-contrib-clean": "0.6.x",
+    "grunt-contrib-jshint": "0.11.x"
   },
   "peerDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "0.4.x"
   },
   "keywords": [
     "gruntplugin",
     "git"
   ],
   "dependencies": {
-    "shelljs": "~0.4.0"
+    "shelljs": "0.4.x"
   }
 }

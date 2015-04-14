@@ -1,11 +1,3 @@
-/*
- * grunt-checkbranch
- * https://github.com/dymonaz/grunt-checkbranch
- *
- * Copyright (c) 2013 Dominykas Blyžė
- * Licensed under the MIT license.
- */
-
 'use strict';
 
 var shell = require("shelljs");

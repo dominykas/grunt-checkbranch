@@ -1,58 +1,53 @@
 # grunt-checkbranch
 
-> Check that we are on a correct Git branch before proceeding.
+Checks that we are on a correct git branch before proceeding.
 
-[![Build Status](https://travis-ci.org/dominykas/grunt-checkbranch.svg?branch=master)](https://travis-ci.org/dymonaz/grunt-checkbranch)
+[![Build Status](https://travis-ci.org/dominykas/grunt-checkbranch.svg?branch=master)](https://travis-ci.org/dominykas/grunt-checkbranch)
 
 ## Getting Started
-This plugin requires Grunt `~0.4.1`
-
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
 npm install grunt-checkbranch --save-dev
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+And in your Gruntfile:
 
 ```js
 grunt.loadNpmTasks('grunt-checkbranch');
 ```
 
-## The "checkbranch" task
+or
 
-### Overview
-Include the task as one of your multitasks, optionally passing the desired branch (default: `master`) after a colon, e.g.:
 ```js
-grunt.registerTask("default", ["test", "checkbranch:develop", "deploy"]
+require('load-grunt-tasks')(grunt);
 ```
 
-In the example above, the `deploy` task will only be executed, if your project is currently on the `develop` branch - otherwise the run will result in a fatal error.
+## Usage
 
-You may override this behavior by passing `--no-checkbranch` via command line. You can disable `--no-checkbranch` (i.e. force the check) by setting a second param for the task, e.g. `checkbranch:master:true`.
+Include the task as one of your multitasks, optionally passing the desired branch (default: `master`) after a colon, e.g.:
 
-You may also negate the test, i.e. exclude a specific branch by prepending an exclamation mark, e.g. `"checkbranch:!develop"`.
+```js
+grunt.registerTask("deploy", ["test", "checkbranch:develop", "copy"]
+```
 
-## Release History
+Pass a "negated" branch where further tasks are not allowed by prepending an exclamation mark:
 
-### 0.3.3 (2015-03-31)
-* io.js and 0.12 support
-* local grunt-cli
-* fix for verbosity
+```js
+grunt.registerTask("deploy", ["test", "checkbranch:!master", "copy"]
+```
 
-### 0.3.2 (2015-03-24)
-* bump deps
+To skip checks:
+```shell
+grunt --no-checkbranch
+```
 
-### 0.3.1 (2014-05-26)
-* npm update
-* Travis
+To force checks (disables skipping), add the third param with `true`:
 
-### 0.3.0 (2014-02-24)
-* Added support for negating a branch, i.e. "run everywhere except X" (thx @Pleochism)
+```js
+grunt.registerTask("deploy", ["test", "checkbranch:develop:true", "copy"]
+```
 
-### 0.2.2 (2013-09-29)
-* Added tests
-* Second bool param to force the check.
+## Contributors ##
 
-### 0.2.1 (2013-09-24)
-* Initial release (after a few removed, buggy ones)
+* [Dominykas Blyžė](https://www.dominykas.com/)
+* [Daniel Lowes](https://github.com/Pleochism)
