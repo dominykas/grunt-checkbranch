@@ -1,7 +1,7 @@
 {
   "name": "grunt-checkbranch",
   "description": "Checks that we are on a correct git branch before proceeding.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "homepage": "https://github.com/dominykas/grunt-checkbranch",
   "author": {
     "name": "Dominykas Blyžė",
@@ -29,6 +29,9 @@
   "scripts": {
     "test": "grunt --verbose"
   },
+  "dependencies": {
+    "shelljs": "0.5.x"
+  },
   "devDependencies": {
     "buster": "0.7.x",
     "grunt": "0.4.x",
@@ -45,8 +48,5 @@
   "keywords": [
     "gruntplugin",
     "git"
-  ],
-  "dependencies": {
-    "shelljs": "0.4.x"
-  }
+  ]
 }
