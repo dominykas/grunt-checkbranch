@@ -1,6 +1,7 @@
 'use strict';
 
 var shell = require("shelljs");
+var minimatch = require("minimatch");
 
 module.exports = function (grunt) {
 
@@ -25,12 +26,11 @@ module.exports = function (grunt) {
 			if (e) {
 				grunt.fail.fatal("Failed to detect the current branch");
 			}
-
 			var branch = branchOutput.trim();
-			if (!negate && branch !== expectedBranch) {
+			if (!negate && !minimatch(branch, expectedBranch)) {
 				grunt.fail.fatal("Only '" + expectedBranch + "' branch is allowed, and you're on '" + branch + "' branch.");
 			}
-			else if (negate && branch === expectedBranch) {
+			else if (negate && minimatch(branch, expectedBranch) ) {
 				grunt.fail.fatal("Anything except '" + expectedBranch + "' branch is allowed, and you're on '" + branch + "' branch.");
 			}
 

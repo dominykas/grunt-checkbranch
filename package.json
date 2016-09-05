@@ -30,7 +30,8 @@
     "test": "grunt --verbose"
   },
   "dependencies": {
-    "shelljs": "0.7.x"
+    "shelljs": "0.7.x",
+    "minimatch": "3.0.x"
   },
   "devDependencies": {
     "buster": "0.7.x",
