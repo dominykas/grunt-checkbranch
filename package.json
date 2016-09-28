@@ -24,23 +24,23 @@
   "license": "MIT",
   "main": "Gruntfile.js",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 4"
   },
   "scripts": {
     "test": "grunt --verbose"
   },
   "dependencies": {
-    "shelljs": "0.5.x"
+    "shelljs": "0.7.x"
   },
   "devDependencies": {
     "buster": "0.7.x",
-    "grunt": "0.4.x",
-    "grunt-bump": "0.3.x",
-    "grunt-buster": "0.3.x",
+    "grunt": "1.x",
+    "grunt-bump": "0.8.x",
+    "grunt-buster": "0.4.x",
     "grunt-checkpending": "1.x",
-    "grunt-cli": "0.1.x",
-    "grunt-contrib-clean": "0.6.x",
-    "grunt-contrib-jshint": "0.11.x"
+    "grunt-cli": "1.x",
+    "grunt-contrib-clean": "1.x",
+    "grunt-contrib-jshint": "1.x"
   },
   "peerDependencies": {
     "grunt": ">=0.4.0"

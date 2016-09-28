@@ -1,9 +1,8 @@
 language: node_js
 sudo: false
 node_js:
-  - "0.10"
-  - "0.12"
-  - "io.js"
+  - "4"
+  - "6"
 before_install:
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis CI"
@@ -15,4 +14,4 @@ deploy:
       secure: "crgqTFxY8eQ3QxYhDFJziWpcWnaqvspZFPzTotTwko+3DiyOBgecc3WdAgtRyg8eH6fyCxmoh9+uyv6zbeTtTR3/0wgVeZfyXwDo2loAeyZ3EzKF0QCE23oC+9eER0emnt1mNmdl4NatunAtbfCjFmCmCvd7Z7+Rqlw/2Pnif7k="
     on:
       tags: true
-      node_js: "io.js"
+      node_js: "6"

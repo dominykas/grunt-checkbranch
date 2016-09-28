@@ -2,7 +2,7 @@ var buster = require('buster');
 var expect = buster.referee.expect;
 var shell = require('shelljs');
 
-var GRUNT_SUCCESS = "Done, without errors.";
+var GRUNT_SUCCESS = "Done.";
 var GRUNT_FATAL = "Fatal error:";
 
 var execGrunt = function (gruntCmd) {
@@ -33,8 +33,8 @@ buster.testCase("grunt-checkbranch", {
 
 	"should not proceed when branch is not develop": function () {
 		var output = execGrunt("checkbranch:develop");
-		expect(output.output).toMatch(GRUNT_FATAL);
-		expect(output.output).toMatch("you're on 'master' branch");
+		expect(output.stdout).toMatch(GRUNT_FATAL);
+		expect(output.stdout).toMatch("you're on 'master' branch");
 		expect(output.code).toEqual(1, "Incorrect grunt output code");
 	},
 
@@ -44,7 +44,7 @@ buster.testCase("grunt-checkbranch", {
 		shell.popd();
 
 		var output = execGrunt("checkbranch:develop");
-		expect(output.output).toMatch(GRUNT_SUCCESS);
+		expect(output.stdout).toMatch(GRUNT_SUCCESS);
 		expect(output.code).toEqual(0, "Incorrect grunt output code");
 	},
 
@@ -54,7 +54,7 @@ buster.testCase("grunt-checkbranch", {
 		shell.popd();
 
 		var output = execGrunt("checkbranch:!develop");
-		expect(output.output).toMatch(GRUNT_SUCCESS);
+		expect(output.stdout).toMatch(GRUNT_SUCCESS);
 		expect(output.code).toEqual(0, "Incorrect grunt output code");
 	},
 
@@ -64,27 +64,27 @@ buster.testCase("grunt-checkbranch", {
 		shell.popd();
 
 		var output = execGrunt("checkbranch:!develop");
-		expect(output.output).toMatch(GRUNT_FATAL);
+		expect(output.stdout).toMatch(GRUNT_FATAL);
 		expect(output.code).toEqual(1, "Incorrect grunt output code");
 	},
 
 	"should default to 'master'": function () {
 		var output = execGrunt("checkbranch");
-		expect(output.output).toMatch(GRUNT_SUCCESS);
+		expect(output.stdout).toMatch(GRUNT_SUCCESS);
 		expect(output.code).toEqual(0, "Incorrect grunt output code");
 	},
 
 	"should bypass via command line": function () {
 		var output = execGrunt("checkbranch:develop --no-checkbranch");
-		expect(output.output).toMatch(GRUNT_SUCCESS);
-		expect(output.output).toMatch("overridden");
+		expect(output.stdout).toMatch(GRUNT_SUCCESS);
+		expect(output.stdout).toMatch("overridden");
 		expect(output.code).toEqual(0, "Incorrect grunt output code");
 	},
 
 	"should not bypass via command line when forced": function () {
 		var output = execGrunt("checkbranch:develop:true --no-checkbranch");
-		expect(output.output).toMatch(GRUNT_FATAL);
-		expect(output.output).toMatch("you're on 'master' branch");
+		expect(output.stdout).toMatch(GRUNT_FATAL);
+		expect(output.stdout).toMatch("you're on 'master' branch");
 		expect(output.code).toEqual(1, "Incorrect grunt output code");
 	},
 
@@ -93,8 +93,8 @@ buster.testCase("grunt-checkbranch", {
 		shell.exec("git init tmp"); // removed old git, initialized new, but no commit - therefore no HEAD
 
 		var output = execGrunt("checkbranch");
-		expect(output.output).toMatch(GRUNT_FATAL);
-		expect(output.output).toMatch("Failed to detect");
+		expect(output.stdout).toMatch(GRUNT_FATAL);
+		expect(output.stdout).toMatch("Failed to detect");
 		expect(output.code).toEqual(1, "Incorrect grunt output code");
 	}
 
