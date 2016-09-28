@@ -6,6 +6,7 @@ node_js:
 before_install:
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis CI"
+  - npm i -g npm
 deploy:
   - provider: npm
     skip_cleanup: true
