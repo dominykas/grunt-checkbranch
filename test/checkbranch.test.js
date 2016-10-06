@@ -96,6 +96,46 @@ buster.testCase("grunt-checkbranch", {
 		expect(output.stdout).toMatch(GRUNT_FATAL);
 		expect(output.stdout).toMatch("Failed to detect");
 		expect(output.code).toEqual(1, "Incorrect grunt output code");
-	}
+	},
+
+	"should proceed when branch matches pattern": function () {
+		shell.pushd('tmp');
+		shell.exec("git checkout -b release/1.2.3");
+		shell.popd();
+
+		var output = execGrunt("checkbranch:release/*");
+		expect(output.stdout).toMatch(GRUNT_SUCCESS);
+		expect(output.code).toEqual(0, "Incorrect grunt output code");
+	},
+
+	"should not proceed when branch does not match pattern": function () {
+		shell.pushd('tmp');
+		shell.exec("git checkout -b release");
+		shell.popd();
+
+		var output = execGrunt("checkbranch:release/*");
+		expect(output.stdout).toMatch(GRUNT_FATAL);
+		expect(output.code).toEqual(1, "Incorrect grunt output code");
+	},
+
+	"should proceed when branch does not match negated pattern": function () {
+		shell.pushd('tmp');
+		shell.exec("git checkout -b master");
+		shell.popd();
+
+		var output = execGrunt("checkbranch:!dev-*");
+		expect(output.stdout).toMatch(GRUNT_SUCCESS);
+		expect(output.code).toEqual(0, "Incorrect grunt output code");
+	},
+
+	"should not proceed when branch matches negated pattern": function () {
+		shell.pushd('tmp');
+		shell.exec("git checkout -b release/1.2.3");
+		shell.popd();
+
+		var output = execGrunt("checkbranch:!release/*");
+		expect(output.stdout).toMatch(GRUNT_FATAL);
+		expect(output.code).toEqual(1, "Incorrect grunt output code");
+	},
 
 });
