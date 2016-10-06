@@ -39,7 +39,15 @@ To force checks (disables skipping), add the third param with `true`:
 grunt.registerTask("deploy", ["test", "checkbranch:develop:true", "copy"]
 ```
 
+Use the 'wildcard' `*` to match a branch prefix or suffix:
+
+```js
+grunt.registerTask("deploy", ["stage", "checkbranch:release/*", "copy"]
+```
+
+
 ## Contributors ##
 
 * [Dominykas Blyžė](https://www.dominykas.com/)
 * [Daniel Lowes](https://github.com/Pleochism)
+* [Stephen Harris](https://github.com/stephenharris)
